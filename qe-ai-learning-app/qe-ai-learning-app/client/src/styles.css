@@ -1,0 +1,33 @@
+:root { --bg:#f7f8fa; --fg:#1b2430; --muted:#55606e; --brand:#1d4ed8; --ok:#0f766e; --bad:#b91c1c; --card:#fff; --line:#cbd2db; }
+* { box-sizing: border-box; }
+body { margin:0; font:16px/1.55 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+main { max-width:860px; margin:0 auto; padding:1rem; }
+h1 { font-size:1.6rem; } h2 { margin-top:1.5rem; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:1rem; margin:1rem 0; }
+.stages { list-style:none; padding:0; }
+.status-locked { opacity:.75; border-style:dashed; }
+.status-completed { border-left:6px solid var(--ok); }
+.status-available, .status-in-progress { border-left:6px solid var(--brand); }
+.badge { font-weight:600; }
+.notice { color:var(--muted); }
+.error { border:1px solid var(--bad); background:#fef2f2; padding:.5rem 1rem; border-radius:6px; }
+.feedback { color:var(--muted); margin:.25rem 0 0; }
+.answer { white-space:pre-wrap; }
+pre { background:#0f172a; color:#e2e8f0; padding:1rem; overflow:auto; border-radius:6px; }
+fieldset { border:1px solid var(--line); border-radius:6px; margin:.75rem 0; }
+.option { display:block; padding:.2rem 0; }
+button { font:inherit; padding:.45rem .9rem; border-radius:6px; border:1px solid var(--brand); background:var(--brand); color:#fff; cursor:pointer; }
+button:disabled { background:#e5e7eb; border-color:var(--line); color:#6b7280; cursor:not-allowed; }
+textarea { width:100%; font:inherit; display:block; margin:.25rem 0 .5rem; }
+a, button, input, textarea, summary { outline-offset:2px; }
+:focus-visible { outline:3px solid #f59e0b; }
+.avatar { display:flex; align-items:center; gap:.75rem; margin-bottom:.5rem; }
+.av-face { fill:#dbeafe; stroke:var(--brand); stroke-width:3; } .av-eye { fill:var(--fg); }
+.av-mouth { fill:none; stroke:var(--fg); stroke-width:3; stroke-linecap:round; } .av-talk { fill:var(--fg); }
+.avatar-error .av-face { fill:#fee2e2; stroke:var(--bad); }
+.avatar-listening svg { transform:scale(1.06); }
+.avatar-thinking svg { animation:bob 1s ease-in-out infinite; }
+.avatar-speaking .av-talk { animation:talk .35s ease-in-out infinite alternate; transform-origin:50px 68px; }
+@keyframes bob { 50% { transform:translateY(-4px); } }
+@keyframes talk { to { transform:scaleY(.4); } }
+@media (prefers-reduced-motion: reduce) { .avatar svg, .av-talk { animation:none !important; transition:none !important; } }
