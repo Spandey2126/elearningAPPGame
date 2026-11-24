@@ -94,7 +94,6 @@ test('final exam fail, retake, passing badge and capstone preserve attempts afte
   await testInfo.attach('final-exam-pass-badge', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
 
   await page.reload();
-  await page.getByRole('button', { name: 'QE learning path', exact: true }).click();
   await game.openFinal();
   await expect(page.getByRole('region', { name: 'Course complete', exact: true })).toBeVisible();
   const progress = await page.evaluate(() => JSON.parse(localStorage.getItem('qe-ai-learning:v1')!));

@@ -1,6 +1,6 @@
 # QE Quest: Local QE for AI Learning Game
 
-A React/TypeScript game with eight ordered QE topic stages and a cumulative final MCQ exam. QE opens at `/`; the preserved AWS CloudQuest adventure is available at `/?area=aws` or through the **AWS fundamentals** tab. The canonical requirements are in [the updated context document](../LOCAL_QE_AI_ELEARNING_APP_CONTEXT.md).
+A React/TypeScript game with eight ordered QE topic stages and a cumulative final MCQ exam. The QE campaign opens at `/`. The canonical requirements are in [the updated context document](../LOCAL_QE_AI_ELEARNING_APP_CONTEXT.md).
 
 ## Prerequisites and installation
 
@@ -109,7 +109,6 @@ Stop development servers first. Tests start mock Ollama on 11435, the tutor API 
 | Exact 64% fail / 65% pass using reviewed-key 100-mark fixtures; rounding regression; configurable checkpoints and prior-stage gates | `tests/assessment.spec.ts` |
 | API contract, input type/whitespace/length bounds, malformed/oversized JSON and unavailable model | `tests/tutor-api.spec.ts` |
 | Grounded POST request, response shape, timeout, malformed/empty/non-text model output and missing model | `tests/tutor-contract.spec.ts` |
-| Preserved AWS missions, progress, guide choice, mobile layout and corrupt-storage fallback | `tests/aws-game.spec.ts` |
 
 The 100-mark boundary fixtures verify the exact threshold independently of the 32-mark course question set; the UI test submits real course questions immediately below/above its reachable threshold. It attaches screenshots for representative final fail/pass states. Model tests assert structure, request contracts and state transitions rather than matching one generated sentence.
 
@@ -132,4 +131,4 @@ Start Ollama with `llama3:latest` available and run `npm run dev`. Open Stage 1,
 - **No animation:** with reduced motion enabled, manual steps and the transcript are the intended behavior.
 - **CI failure:** inspect the `playwright-report` artifact for assertions, screenshots and traces; check lockfile installation and browser setup.
 
-The preserved AWS adventure uses local cloud-island artwork and Nova/Byte/Orbit SVG guides. Its mission data, images and separate browser progress remain available through the AWS tab; see the [repository README](../README.md) for asset provenance.
+The Nova SVG robot guide is served locally for the QE hero and tutor. Course content, explainers and guide imagery do not require external animation, font or avatar services.

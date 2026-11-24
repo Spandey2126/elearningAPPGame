@@ -13,7 +13,6 @@ export class LearningGamePage {
       }, progress);
     }
     await this.page.goto('/');
-    await this.page.getByRole('button', { name: 'QE learning path', exact: true }).click();
   }
 
   async openFinal() {

@@ -1,4 +1,4 @@
-# QE Quest — Learning Arcade
+# QE Quest — QE for AI Learning Game
 
 A local-first QE learning game covering JavaScript/TypeScript, Playwright, POM/Git/CI, and local AI integration. The updated [project context](LOCAL_QE_AI_ELEARNING_APP_CONTEXT.md) matches the supplied video-game context document. The maintained application is in [`qe-ai-learning-app/`](qe-ai-learning-app/); the original ZIP remains an archive.
 
@@ -34,11 +34,7 @@ In the prepared cloud environment with `/usr/bin/chromium`, use `npm test -- --c
 
 See the [application README](qe-ai-learning-app/README.md) for configuration, architecture, a learner walkthrough, scoring boundary coverage, real-model smoke checks and troubleshooting. The API reads process environment variables; `.env.example` documents defaults, but `.env` is **not** loaded automatically.
 
-## Preserved AWS adventure
-
-Open `/?area=aws` or select **AWS fundamentals** for the existing CloudQuest game: seven console simulations (IAM, EC2, S3, VPC, RDS, CloudWatch and Budgets), three robot guides (Nova, Byte and Orbit), sequential unlocking, per-setting feedback, XP and a completion badge. It runs in the browser without an AWS account, credentials, provisioned resources or charges. AWS progress is separate from QE progress.
-
-The cloud-island illustration was AI-generated for this project. Avatar SVGs and service-category symbols are original artwork served locally, not official AWS icons. Fonts use local system fallbacks; the app does not fetch external fonts. CloudQuest is an independent learning simulation and does not award an AWS certification.
+The Nova robot guide is served locally for the QE hero and tutor. Fonts use local system fallbacks; the app does not fetch external fonts.
 
 ## Update content
 
@@ -46,4 +42,3 @@ The cloud-island illustration was AI-generated for this project. Avatar SVGs and
 - `qe-ai-learning-app/client/src/content/explainers.ts`: reviewed per-stage technical diagrams, narration and code snapshots.
 - `qe-ai-learning-app/client/src/services/game.ts`: stage gates, deterministic scoring and configurable checkpoint threshold.
 - `qe-ai-learning-app/client/src/components/TechnicalExplainer.tsx`: accessible player and transcript.
-- `qe-ai-learning-app/client/src/content/awsMissions.ts`: preserved AWS mission content.
