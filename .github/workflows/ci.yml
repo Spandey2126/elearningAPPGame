@@ -1,4 +1,4 @@
-name: Learning arcade checks
+name: QE learning game checks
 on:
   push:
     branches: [main]

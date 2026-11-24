@@ -1,3 +1,33 @@
+.qe-header {
+  min-height:86px;
+  display:flex;
+  align-items:center;
+  gap:36px;
+  padding:18px max(24px,calc((100vw - 1184px)/2));
+  background:#fff;
+  border-bottom:1px solid #e0e6ef;
+}
+.qe-brand {
+  display:flex;
+  align-items:center;
+  color:#19263d;
+  text-decoration:none;
+  font-size:25px;
+  font-weight:750;
+  letter-spacing:-1.2px;
+  white-space:nowrap;
+}
+.qe-brand>span:first-child { color:#f39a35;font-size:35px;line-height:1;margin-right:8px; }
+.qe-brand .qe-brand-period { color:#f39a35; }
+.qe-header-topics { color:#596b81;font-size:12px; }
+.qe-header-label { margin-left:auto;color:#65748a;font-size:10px;letter-spacing:1.4px;white-space:nowrap; }
+.qe-header-label span { color:#dc8729;margin-left:12px;font-size:20px; }
+@media(max-width:1100px) { .qe-header-label { display:none; } }
+@media(max-width:700px) {
+  .qe-header { min-height:74px;padding:16px;gap:16px; }
+  .qe-brand { font-size:23px; }
+  .qe-header-topics { display:none; }
+}
 .qe-game{max-width:1240px;padding:30px 28px 64px;color:#19263d;font-size:15px;line-height:1.65}
 .qe-game .qe-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.3px;color:#5a677c}
 .qe-page-heading{margin-bottom:22px}.qe-page-heading h1{font-size:19px;letter-spacing:-.5px;margin:4px 0}

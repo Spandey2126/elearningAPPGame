@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Avatar, type AvatarState } from './Avatar';
 import { askTutor, type TutorResponse } from '../services/tutor';
 
-export function TutorPanel({ lessonTitle, lessonText, guide = 'nova' }: { lessonTitle: string; lessonText: string; guide?: string }) {
+export function TutorPanel({ lessonTitle, lessonText }: { lessonTitle: string; lessonText: string }) {
   const [question, setQuestion] = useState('');
   const [state, setState] = useState<AvatarState>('idle');
   const [reply, setReply] = useState<TutorResponse | null>(null);
@@ -42,7 +42,7 @@ export function TutorPanel({ lessonTitle, lessonText, guide = 'nova' }: { lesson
   return (
     <section aria-label="AI tutor" className="tutor">
       <h4>Ask the AI tutor (optional, outside the course time estimate)</h4>
-      <Avatar state={state} guide={guide} />
+      <Avatar state={state} />
       <label htmlFor={`q-${lessonTitle}`}>Your question about this lesson</label>
       <textarea id={`q-${lessonTitle}`} value={question} maxLength={500} rows={2}
         onFocus={() => state === 'idle' && setState('listening')}

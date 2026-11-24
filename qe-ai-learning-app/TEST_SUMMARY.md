@@ -1,15 +1,15 @@
 # QE learning game: requirements and validation
 
-Validated on 24 November 2026 using the prepared cloud environment's Chromium, with mocked Ollama. This maps the supplied video-game context and capstone brief to the maintained application. The capstone remains a separate practical assignment outside the required four-hour course.
+Validated on 24 November 2026 using the prepared cloud environment's Chromium and mocked Ollama. This maps the supplied video-game context and capstone brief to the maintained QE-only application. The capstone remains a separate practical assignment outside the required four-hour course.
 
 ## Commands and results
 
 | Command | Result |
 | --- | --- |
 | `npm run build` | Passed: client/server TypeScript checks and production Vite build |
-| `npm test -- --config playwright.cloud.config.ts` | 42 passed |
+| `npm test -- --config playwright.cloud.config.ts` | 40 passed |
 
-Open the generated [Playwright HTML report](playwright-report/index.html), or run `npm run test:report`. The report includes desktop/mobile explainer and final-exam fail/pass screenshots. GitHub Actions is configured to build and run the mocked suite and upload this report; hosted execution was not performed in this session.
+Open the generated [Playwright HTML report](playwright-report/index.html), or run `npm run test:report`. The suite attaches desktop/mobile explainer and final-exam fail/pass screenshots. GitHub Actions is configured to build and run the mocked suite and upload this report; hosted execution was not performed in this session.
 
 ## Requirement coverage
 
@@ -21,13 +21,13 @@ Open the generated [Playwright HTML report](playwright-report/index.html), or ru
 | Locked, available, in-progress and completed stages | `services/game.ts`, stage map | Initial locks; lesson completion alone keeps the next stage locked; checkpoint submission unlocks it |
 | Configurable checkpoint cutoff, without an invented default pass mark | `CHECKPOINT_PASS_PERCENT = null`, `isStageComplete` | Submission-only default and numeric-cutoff checks; all earlier stages must be complete |
 | Browser-local lessons, attempts, marks and timestamps survive refresh | `services/progress.ts`, saved-attempt history | Stage persistence and final failure/retake persistence checks |
+| QE is the only learning experience, including old section links | QE-only app shell and header | Legacy link opens the QE stage map and preserves existing QE progress after reload |
 | Fixed keys and final threshold of at least 65% | `gradeQuestions`, `scoreMeetsThreshold`, `Quiz` | Exact 64% fails, exact 65% passes; legacy rounded 64.5% cannot pass |
 | Real final-exam failure, retake, completion and capstone | `FinalView`, packaged DOCX | POM-backed answer submission below/above reachable threshold, badge, successful DOCX download and refresh |
 | Optional lesson-grounded local tutor | Express `/api/tutor` to Ollama `POST /api/chat` | Captured POST validates context, model, non-streaming request and response contract |
 | Tutor failure does not block the course | Independent local content/scoring and setup guidance | UI error followed by lesson completion; unavailable API and timeout tests |
 | Bounded input and useful model errors | Express validation and Ollama client | Field types/whitespace/limits, malformed/oversized JSON, empty/malformed/non-text responses, missing model |
 | CI works without a live model | Test-managed mock server and isolated contract stubs | All automated tests use controlled model behavior |
-| Existing AWS game remains available | AWS tab and `/?area=aws`, separate storage | Mission validation/unlocks, guide choice, duplicate-XP prevention, persistence and mobile checks |
 
 ## Scoring boundary evidence
 
@@ -37,7 +37,7 @@ To verify the exact boundary without changing the reviewed exam's mark distribut
 
 ## Reviewer walkthrough
 
-1. Follow `README.md` to install and run the local UI/API. The QE campaign opens first; no model is required for the learning flow.
+1. Follow `README.md` to install and run the local UI/API. The QE campaign opens at `/`; no model is required for the learning flow.
 2. Open Stage 1. Play the explainer, pause it, step backward/forward, replay and open the transcript. With reduced motion enabled, use manual steps.
 3. Mark the lesson complete, return to the map, and confirm Stage 2 remains locked. Return, submit the checkpoint, and confirm Stage 2 unlocks. Refresh to verify persistence.
 4. Continue the stages, or use the automated POM exam test for a reproducible final-exam failure and successful retake. Open Saved attempts for marks and timestamps. The passing screen provides the separate project brief.

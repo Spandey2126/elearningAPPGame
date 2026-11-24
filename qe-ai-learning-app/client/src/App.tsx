@@ -8,7 +8,6 @@ import {
 } from './services/game';
 import { Quiz } from './components/Quiz';
 import { TutorPanel } from './components/TutorPanel';
-import { AwsGame } from './components/AwsGame';
 import { TechnicalExplainer } from './components/TechnicalExplainer';
 import { explainers } from './content/explainers';
 import './qe-game.css';
@@ -19,19 +18,12 @@ const BADGE: Record<StageStatus, string> = { locked: '🔒 Locked', available: '
 const CAPSTONE = '/QE_for_AI_Learning_Game_Capstone_Project_Submission_Brief.docx';
 
 export default function App() {
-  const [area, setArea] = useState<'aws' | 'qe'>(() => new URLSearchParams(window.location.search).get('area') === 'aws' ? 'aws' : 'qe');
-  const changeArea = (next: 'aws' | 'qe') => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('area', next);
-    window.history.replaceState(null, '', url);
-    setArea(next);
-  };
-  return <div className="learning-shell">
-    <header className="global-header"><a className="cloud-brand" href="/" aria-label="Learning arcade home"><span aria-hidden="true">◈</span> {area === 'qe' ? 'QE Quest' : 'CloudQuest'}<span className="brand-period">.</span></a>
-      <nav aria-label="Learning areas"><button aria-pressed={area === 'qe'} onClick={() => changeArea('qe')}>QE learning path</button><button aria-pressed={area === 'aws'} onClick={() => changeArea('aws')}>AWS fundamentals</button></nav>
-      <span className="header-label">THE LEARNING ARCADE <span aria-hidden="true">✦</span></span>
+  return <div className="qe-shell">
+    <header className="qe-header"><a className="qe-brand" href="/" aria-label="QE Quest home"><span aria-hidden="true">◈</span> QE Quest<span className="qe-brand-period">.</span></a>
+      <span className="qe-header-topics">TypeScript · Playwright · POM · Local AI</span>
+      <span className="qe-header-label">YOUR QE LEARNING PATH <span aria-hidden="true">✦</span></span>
     </header>
-    {area === 'aws' ? <AwsGame /> : <QeApp />}
+    <QeApp />
   </div>;
 }
 
