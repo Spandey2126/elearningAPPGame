@@ -127,7 +127,32 @@ Keep course content separate from React layout components so instructors can rev
 - Require 65% or higher on the cumulative final exam to mark the course complete.
 - Do not store passwords, access tokens, or sensitive data in browser storage.
 
-### 4.4 Animated tutor avatar
+### 4.4 Animated technical explainers
+
+Every topic stage must include at least one short, purposeful visual animation that helps teach its technical concepts. Animations are instructional content, not decorative filler, and their viewing/interaction time is included in the stage’s existing 20-minute learning-and-practice allocation. Do not add animation time on top of the 240-minute course limit.
+
+Required animation coverage:
+
+| Stage | Suggested animated explanation |
+| --- | --- |
+| 1 | JavaScript values moving through variables, branching, loops, and functions; show array/object changes step by step. |
+| 2 | An asynchronous request moving through Promise/`async`/`await`, followed by TypeScript types narrowing a value safely. |
+| 3 | Playwright’s browser, context, page, locator, auto-wait, and assertion flow. |
+| 4 | UI and API test lifecycle, fixtures/test isolation, response parsing, and trace-based failure investigation. |
+| 5 | A test delegating actions to a page object and reusable component while keeping test intent readable. |
+| 6 | A code change moving through Git commit, pull request, GitHub Actions build/test jobs, and report/artifact output. |
+| 7 | A learner question sent by HTTP POST through the app backend to Ollama `llama3:latest`, then a response parsed and displayed. |
+| 8 | A Playwright test using a mocked LLM response in CI, with deterministic assertions around the AI request/response contract and variable generated wording. |
+
+Implementation requirements:
+
+- Prefer lightweight SVG/CSS or in-app step-by-step diagrams; use Canvas only where it materially improves the explanation. Keep the experience local and do not require streaming video or external animation services.
+- Let the learner pause, replay, and step through important states. Pair movement with concise labels, narration text, or a transcript; motion must never be the only source of information.
+- Respect `prefers-reduced-motion`; provide a static or step-through alternative and avoid rapid flashing, excessive movement, or distracting loops.
+- Keep animations keyboard-accessible where controls are interactive, with visible focus and descriptive accessible names.
+- Use animations to explain the actual reviewed lesson content. Do not imply that a schematic depicts hidden runtime details or that generated model output has been verified.
+
+### 4.5 Animated tutor avatar
 
 Implement a lightweight avatar using CSS or SVG. It should work offline and have clear states:
 
@@ -139,14 +164,14 @@ Implement a lightweight avatar using CSS or SVG. It should work offline and have
 
 The avatar’s state should reflect the tutor interaction. The animation is a visual UI response to AI state; generating video or using an external avatar service is outside the MVP. Honor `prefers-reduced-motion`. Never make animation or audio the only way to understand the tutor’s status or lesson content.
 
-### 4.5 Optional speech
+### 4.6 Optional speech
 
 - Provide an explicit Speak control for tutor answers using the browser SpeechSynthesis API when available.
 - Keep the answer visible as text.
 - Provide a Stop control and handle unsupported or unavailable speech gracefully.
 - Do not require speech synthesis for core app operation.
 
-### 4.6 Local AI tutor
+### 4.7 Local AI tutor
 
 - Provide a tutor panel on lesson pages.
 - Send the current lesson title and a concise lesson excerpt with the learner’s question.
@@ -390,6 +415,7 @@ The project is ready for review when:
 - At least one concise complete learning unit exists in each topic stage; more units may be added only while keeping the total required path within 240 minutes.
 - Lessons include objectives, explanation, practical work, and fixed-key knowledge checks.
 - Quiz results and completion persist after refresh on the same browser.
+- Each of the eight topic stages includes a purposeful technical explainer animation within its existing 20-minute learning/practice budget; learners can pause/replay or use a step-through/static alternative, and reduced-motion preferences are honored.
 - Avatar states respond to tutor interaction and respect reduced motion.
 - Tutor requests use the local backend and Ollama `POST /api/chat` with the active lesson context.
 - The tutor reports unavailable service clearly while course reading remains usable.
@@ -400,5 +426,5 @@ The project is ready for review when:
 ## 13. Copy-ready instruction for a code generator
 
 ```text
-Read the attached project context document as the source of truth. Inspect the repository before editing and preserve its existing conventions. Build the local QE for AI e-learning game described there. Implement the application in small phases, including the React/TypeScript stage map, concise ordered lesson content, stage checkpoint MCQs, browser-local game progress, and the cumulative final MCQ exam with a 65% passing threshold. Keep the entire required in-app path, including orientation, learning, checkpoint tests, and final exam, within 240 minutes using the specified time budget. Add an accessible animated tutor avatar, Express API, local Ollama integration with llama3:latest, Playwright tests, and GitHub Actions CI with a mocked Ollama response. After a passing final exam, link to the separate capstone project submission brief. Enforce stage gates: all required lessons plus submission of that stage’s test before unlocking the next stage. Keep intermediate checkpoint pass thresholds configurable; do not change the specified 65% final-exam threshold. Keep the core course usable when Ollama is unavailable. Do not stop after proposing a plan: implement the working application, run the available build and automated checks, fix failures, and update the README with exact setup and run commands. Report what you changed, commands you ran, results, and any remaining gaps. Do not include the separate capstone project assignment in the four-hour course estimate.
+Read the attached project context document as the source of truth. Inspect the repository before editing and preserve its existing conventions. Build the local QE for AI e-learning game described there. Implement the application in small phases, including the React/TypeScript stage map, concise ordered lesson content, stage checkpoint MCQs, browser-local game progress, and the cumulative final MCQ exam with a 65% passing threshold. Keep the entire required in-app path, including orientation, learning, checkpoint tests, and final exam, within 240 minutes using the specified time budget. Add accessible per-stage technical explainer animations plus an animated tutor avatar, Express API, local Ollama integration with llama3:latest, Playwright tests, and GitHub Actions CI with a mocked Ollama response. After a passing final exam, link to the separate capstone project submission brief. Enforce stage gates: all required lessons plus submission of that stage’s test before unlocking the next stage. Keep intermediate checkpoint pass thresholds configurable; do not change the specified 65% final-exam threshold. Keep the core course usable when Ollama is unavailable. Do not stop after proposing a plan: implement the working application, run the available build and automated checks, fix failures, and update the README with exact setup and run commands. Report what you changed, commands you ran, results, and any remaining gaps. Do not include the separate capstone project assignment in the four-hour course estimate.
 ```
